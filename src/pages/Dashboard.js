@@ -41,13 +41,30 @@ const Dashboard = () => {
         },
     ]
     
+    const uniqueCategories = [
+        ...new Set(tickets?.map(({ category }) => category))
+    ]
 
+    /* 42:00 in the video */
 
     return (
       <div className="dashboard">
           <h1>My Projects</h1>
           <div classNam="ticket-container">
-              <TicketCard />
+              {tickets && uniqueCategories?.map((uniqueCategory, categoryIndex) => (
+                  <div key={categoryIndex}>
+                      <h3>{uniqueCategory}</h3>
+                      {tickets.filter(ticket => ticket.category === uniqueCategory)
+                        .map((filteredTicket, _index) => (
+                            <TicketCard 
+                                id={_index}
+                                color={filteredTicket.color}
+                                ticket={filteredTicket}
+                            />
+                        ))
+                      }
+                  </div>
+              ))}
 
           </div>
       </div>
