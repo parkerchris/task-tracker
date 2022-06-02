@@ -6,18 +6,19 @@ import ProgressDisplay from "./ProgressDisplay"
 import DeleteBlock from "./DeleteBlock"
 
 
-const TicketCard = () => {
+const TicketCard = ({ color, ticket }) => {
     return (
       <div classname="ticket-card">
          
-         <Link>
+          
+          <Link to={`/ticket/${ticket.documentid}`} id="link"> 
             <div className="ticket-color"></div>
-            <h3>title</h3>
-            <AvatarDisplay/>
+            <h3>{ticket.title}</h3>
+            <AvatarDisplay ticket={ticket} />
             <StatusDisplay/>
             <PriorityDisplay/>
             <ProgressDisplay/>
-         </Link>
+          </Link>
          <DeleteBlock/>
       </div>
     )
